@@ -80,7 +80,7 @@ jQuery(($)=>{
     loadData(data, 'tamano');
     // Listar hora de entrega
     listarHora =  async() => {
-        const res = await fetch(`http://localhost:3000/api/tipoMasa/`, {
+        const res = await fetch(`http://localhost:3000/api/hora/`, {
             headers: {
                 'Content-Type': 'application/json'
             },
