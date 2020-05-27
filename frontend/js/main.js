@@ -4,9 +4,6 @@ jQuery(($)=>{
         let htmlDrop = '';
         let name = '';
         switch(names){
-            case 'tipoMasa':
-                name = 'Tipo de masa';
-                break;
             case 'saborMasa':
                 name = 'Tipo de masa';
                 break;
@@ -26,19 +23,6 @@ jQuery(($)=>{
         });
         $("#" + names).html(htmlDrop);
     }
-    // Listar tipo de masa
-    listarTipoMasa =  async() => {
-        const res = await fetch(`http://localhost:3000/api/tipoMasa/`, {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: "GET"
-        });
-        const jsonRetorno = await res.json();
-        return jsonRetorno;
-    }
-    data = listarTipoMasa()
-    loadData(data, 'tipoMasa');
     // Listar sabor de masa
     listarSaborMasa =  async() => {
         const res = await fetch(`http://localhost:3000/api/saborMasa/`, {
@@ -91,4 +75,19 @@ jQuery(($)=>{
     }
     data = listarHora()
     loadData(data, 'horaDrop');
+
+    llenaTipoMasa();
+
 });
+
+async function llenaTipoMasa() {
+    const ret = new tipoMasa();
+    const jsonData = await ret.listar();
+    llenaCombo($("#tipoMasa"), jsonData);
+}
+
+function llenaCombo(combo, json) {
+    $.each(json, (key, value) => {
+        combo.append('<option value="' + value.id + '">' + value.name + '</option>');
+    });
+}
