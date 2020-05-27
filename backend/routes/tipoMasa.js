@@ -1,8 +1,8 @@
 const express = require('express');
 const router  = express.Router();
-const ctrlTipoMasa = require('../controllers/tipoMasa');
+const Control = require('../controllers/tipoMasa');
 
-router.get('/', ctrlTipoMasa.getTipoMasa);
-router.get('/:id', ctrlTipoMasa.getTipoMasaID);
+router.get('/', Control.getTipoMasa);
+router.get('/:id', Control.getTipoMasaID);
 
 module.exports = router;
